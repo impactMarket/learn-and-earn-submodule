@@ -85,14 +85,14 @@ export default function useLevels(
             );
 
         const normalizedDataFromPrismic =
-            !!objectsFromPrismic &&
+            objectsFromPrismic &&
             objectsFromPrismic.map((item: any) => ({
                 ...item,
                 status: 'available',
                 totalLessons: item?.lessons?.length
             }));
 
-        const notLoggedData = !!normalizedDataFromPrismic
+        const notLoggedData = normalizedDataFromPrismic
             ? normalizedDataFromPrismic.filter(
                   (item: any) => item?.data?.is_live === true
               )
