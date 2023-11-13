@@ -1,6 +1,5 @@
-import { Box, Button, Pagination, Text } from '@impact-market/ui';
+import { Box, Button, Pagination, Text, colors } from '@impact-market/ui';
 import { Breakpoints } from '../helpers/Breakpoints';
-import { colors } from '@impact-market/ui';
 import styled from 'styled-components';
 
 export const PaginationDestop = styled(Pagination)`

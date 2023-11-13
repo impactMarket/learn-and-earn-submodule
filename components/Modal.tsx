@@ -10,29 +10,29 @@ const Modal = ({ isOpen, fullW, children }: any) => {
             padding={1.5}
             w="100%"
             style={{
+                alignItems: 'center',
+                backdropFilter: 'blur(10px)',
+                background: 'rgba(39, 39, 39, .8)',
+                boxSizing: 'border-box',
+                display: 'flex',
+                height: '100%',
+                justifyContent: 'center',
+                left: 0,
+                padding: '1rem',
                 position: 'fixed',
                 top: 0,
-                left: 0,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
                 width: '100%',
-                height: '100%',
-                zIndex: '10',
-                padding: '1rem',
-                boxSizing: 'border-box',
-                background: 'rgba(39, 39, 39, .8)',
-                backdropFilter: 'blur(10px)'
+                zIndex: '10'
             }}
         >
             <Box
                 style={{
-                    width: '100%',
-                    maxWidth: fullW ? '100%': '21rem',
-                    padding: '1.5rem',
+                    background: 'white',
                     border: '1px solid',
                     borderRadius: '12px',
-                    background: 'white'
+                    maxWidth: fullW ? '100%': '21rem',
+                    padding: '1.5rem',
+                    width: '100%'
                 }}
             >
                 {children}

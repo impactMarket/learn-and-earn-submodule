@@ -1,3 +1,8 @@
+import { PDFDocument } from 'pdf-lib';
+import { useState } from 'react';
+import html2canvas from 'html2canvas';
+import styled from 'styled-components';
+
 import {
     Box,
     Button,
@@ -7,14 +12,11 @@ import {
     Text,
     colors
 } from '@impact-market/ui';
+
 import { Breakpoints } from '../helpers/Breakpoints';
-import { PDFDocument } from 'pdf-lib';
-import { useState } from 'react';
 import Certificate from './Certificate';
-import html2canvas from 'html2canvas';
 import Input from '../../src/components/Input';
 import Modal from './Modal';
-import styled from 'styled-components';
 
 export const CardWrapper = styled(Card)`
     overflow: 'hidden';
@@ -60,7 +62,7 @@ const GenerateCertificate = (props: any) => {
     const [loading, setLoading] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [pngDataUrl, setPngDataUrl] = useState('');
-    const certificateData = { ...certificate, sponsor, title, completionDate };
+    const certificateData = { ...certificate, completionDate, sponsor, title };
 
     const handleConvertToPNG = () => {
         setLoading(true);
@@ -82,11 +84,13 @@ const GenerateCertificate = (props: any) => {
     const handleConvertToPDF = async () => {
         if (!pngDataUrl) {
             console.error('No PNG image to convert to PDF');
+
             return;
         }
 
         const pdfDoc = await PDFDocument.create();
-        const page = pdfDoc.addPage([841.89, 595.276]); // A4 dimensions in points (landscape)
+        // A4 dimensions in points (landscape)
+        const page = pdfDoc.addPage([841.89, 595.276]);
 
         const pngImage = await pdfDoc.embedPng(pngDataUrl);
         const { width, height } = pngImage.scale(1);
@@ -97,10 +101,10 @@ const GenerateCertificate = (props: any) => {
         const yPosition = (595.276 - height * scaleFactor) / 2;
 
         page.drawImage(pngImage, {
-            x: xPosition,
-            y: yPosition,
+            height: height * scaleFactor,
             width: width * scaleFactor,
-            height: height * scaleFactor
+            x: xPosition,
+            y: yPosition
         });
 
         const pdfBytes = await pdfDoc.save();
@@ -110,6 +114,7 @@ const GenerateCertificate = (props: any) => {
         const pdfDataUrl = URL.createObjectURL(pdfBlob);
 
         const a = document.createElement('a');
+
         a.href = pdfDataUrl;
         a.download = 'certificate.pdf';
 
@@ -133,10 +138,10 @@ const GenerateCertificate = (props: any) => {
             <Box style={{ position: 'relative' }}>
                 <Divider
                     style={{
-                        position: 'absolute',
-                        top: '0',
                         left: '-16px',
                         marginBottom: 0,
+                        position: 'absolute',
+                        top: '0',
                         width: 'calc(100% + 32px)'
                     }}
                 />
@@ -149,8 +154,8 @@ const GenerateCertificate = (props: any) => {
                         noMargin
                         small
                         style={{
-                            textAlign: 'center',
-                            padding: '1.5rem 0 1rem'
+                            padding: '1.5rem 0 1rem',
+                            textAlign: 'center'
                         }}
                     >
                         {cardTip}
@@ -159,8 +164,8 @@ const GenerateCertificate = (props: any) => {
                     <Box
                         style={{
                             display: 'flex',
-                            justifyContent: 'space-between',
-                            gap: '1rem'
+                            gap: '1rem',
+                            justifyContent: 'space-between'
                         }}
                     >
                         <Input
@@ -192,9 +197,9 @@ const GenerateCertificate = (props: any) => {
                     <Box
                         style={{
                             display: 'flex',
-                            justifyContent: 'flex-end',
-                            gap: '1rem',
                             flexWrap: 'wrap',
+                            gap: '1rem',
+                            justifyContent: 'flex-end',
                             marginTop: '.5rem'
                         }}
                     >
@@ -221,10 +226,10 @@ const GenerateCertificate = (props: any) => {
                 <div
                     id="htmlElementToCapture"
                     style={{
-                        zIndex: '-1',
+                        height: '387px',
                         position: 'absolute',
                         width: '550px',
-                        height: '387px'
+                        zIndex: '-1'
                     }}
                 >
                     <Certificate
@@ -236,10 +241,10 @@ const GenerateCertificate = (props: any) => {
 
             <Modal
                 style={{
-                    width: '100%',
-                    height: '100%',
                     flexDirection: 'column',
-                    maxHeight: 'calc(100vw - 100px)'
+                    height: '100%',
+                    maxHeight: 'calc(100vw - 100px)',
+                    width: '100%'
                 }}
                 isOpen={modalOpen}
                 fullW
@@ -247,9 +252,9 @@ const GenerateCertificate = (props: any) => {
                 <img
                     src={pngDataUrl}
                     style={{
-                        width: '100%',
                         maxHeight: 'calc(90vh - 100px)',
-                        objectFit: 'contain'
+                        objectFit: 'contain',
+                        width: '100%'
                     }}
                     alt="PNG Image"
                 />
@@ -265,8 +270,8 @@ const GenerateCertificate = (props: any) => {
                         gray
                         style={{
                             background: 'white',
-                            color: '#344054',
-                            borderColor: '#D0D5DD'
+                            borderColor: '#D0D5DD',
+                            color: '#344054'
                         }}
                         onClick={() => {
                             setModalOpen(false);

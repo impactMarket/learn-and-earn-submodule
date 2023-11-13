@@ -47,8 +47,8 @@ export default function useLessons(
                 return {
                     ...el,
                     backendId: item.id,
-                    status: item.status,
-                    completionDate: item.completionDate
+                    completionDate: item.completionDate,
+                    status: item.status
                 };
             }
         });
