@@ -41,6 +41,29 @@ export const CardWrapper = styled(Card)`
     }
 `;
 
+const DividerLine = styled(Divider)`
+    left: -16px;
+    margin-bottom: 0;
+    position: absolute;
+    top: 0;
+    width: calc(100% + 32px);
+`;
+
+const ViewCertificateButton = styled(Button)`
+    color: #1570EF;
+    font-weight: 600;
+`;
+
+const DismissButton = styled(Button)`
+    background: white;
+    border-color: #D0D5DD;
+    color: #344054;
+`;
+
+const DownloadCertificateButton = styled(Button)`
+    margin-left: 1rem;
+`;
+
 const GenerateCertificate = (props: any) => {
     const {
         title,
@@ -136,15 +159,7 @@ const GenerateCertificate = (props: any) => {
                 </Box>
             </Box>
             <Box style={{ position: 'relative' }}>
-                <Divider
-                    style={{
-                        left: '-16px',
-                        marginBottom: 0,
-                        position: 'absolute',
-                        top: '0',
-                        width: 'calc(100% + 32px)'
-                    }}
-                />
+                <DividerLine />
             </Box>
 
             {!isReady && (
@@ -203,14 +218,13 @@ const GenerateCertificate = (props: any) => {
                             marginTop: '.5rem'
                         }}
                     >
-                        <Button
+                        <ViewCertificateButton
                             gray
-                            style={{ color: '#1570EF', fontWeight: 600 }}
                             onClick={() => setModalOpen(true)}
                             isLoading={loading}
                         >
                             {viewCertificate}
-                        </Button>
+                        </ViewCertificateButton>
 
                         <Button
                             onClick={handleConvertToPDF}
@@ -266,27 +280,19 @@ const GenerateCertificate = (props: any) => {
                         marginTop: '2rem'
                     }}
                 >
-                    <Button
+                    <DismissButton
                         gray
-                        style={{
-                            background: 'white',
-                            borderColor: '#D0D5DD',
-                            color: '#344054'
-                        }}
                         onClick={() => {
                             setModalOpen(false);
                         }}
                     >
                         {dismiss}
-                    </Button>
-                    <Button
-                        style={{
-                            marginLeft: '1rem'
-                        }}
+                    </DismissButton>
+                    <DownloadCertificateButton
                         onClick={handleConvertToPDF}
                     >
                         {downloadCertificate}
-                    </Button>
+                    </DownloadCertificateButton>
                 </Box>
             </Modal>
         </CardWrapper>
