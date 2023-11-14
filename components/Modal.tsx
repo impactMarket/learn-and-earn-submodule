@@ -30,7 +30,7 @@ const Modal = ({ isOpen, fullW, children }: any) => {
                     background: 'white',
                     border: '1px solid',
                     borderRadius: '12px',
-                    maxWidth: fullW ? '100%': '21rem',
+                    maxWidth: fullW ? '100%' : '21rem',
                     padding: '1.5rem',
                     width: '100%'
                 }}
