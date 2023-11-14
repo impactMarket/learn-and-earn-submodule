@@ -62,7 +62,7 @@ const Certificate = (props: any) => {
         const date = new Date(timestamp);
 
         // Format the date using the options parameter of toLocaleDateString
-        const options = { day: 'numeric',  month: 'long', year: 'numeric' };
+        const options = { day: 'numeric',  month: 'long', year: 'numeric' } as any;
         const formattedDate = date.toLocaleDateString('en-US', options);
 
         return formattedDate;

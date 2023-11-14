@@ -8,6 +8,11 @@ export const PaginationDestop = styled(Pagination)`
     }
 `;
 
+export const SubmitButton = styled(Button)`
+    flex: 1; 
+    margin-left: .75rem;
+`;
+
 export const PaginationMobile = styled(Box)`
     display: none;
     background-color: ${colors.g100};
@@ -95,16 +100,15 @@ function EnhancedPagination({
                     </Button>
                 )}
                 {isQuiz && currentPage === pageCount - 1 && (
-                    <Button
+                    <SubmitButton
                         className="next"
-                        style={{ flex: 1, marginLeft: '.75rem' }}
                         reverse
                         icon="chevronRight"
                         isLoading={isLoading}
                         onClick={() => postAnswers()}
                     >
                         {submitLabel}
-                    </Button>
+                    </SubmitButton>
                 )}
             </PaginationMobile>
         </>
