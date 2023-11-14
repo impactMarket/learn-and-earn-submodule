@@ -50,13 +50,13 @@ const DividerLine = styled(Divider)`
 `;
 
 const ViewCertificateButton = styled(Button)`
-    color: #1570EF;
+    color: #1570ef;
     font-weight: 600;
 `;
 
 const DismissButton = styled(Button)`
     background: white;
-    border-color: #D0D5DD;
+    border-color: #d0d5dd;
     color: #344054;
 `;
 
@@ -288,9 +288,7 @@ const GenerateCertificate = (props: any) => {
                     >
                         {dismiss}
                     </DismissButton>
-                    <DownloadCertificateButton
-                        onClick={handleConvertToPDF}
-                    >
+                    <DownloadCertificateButton onClick={handleConvertToPDF}>
                         {downloadCertificate}
                     </DownloadCertificateButton>
                 </Box>

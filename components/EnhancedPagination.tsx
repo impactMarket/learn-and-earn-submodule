@@ -9,8 +9,8 @@ export const PaginationDestop = styled(Pagination)`
 `;
 
 export const SubmitButton = styled(Button)`
-    flex: 1; 
-    margin-left: .75rem;
+    flex: 1;
+    margin-left: 0.75rem;
 `;
 
 export const PaginationMobile = styled(Box)`
@@ -82,7 +82,8 @@ function EnhancedPagination({
                     {previousLabel}
                 </Button>
                 <Text>
-                    {(!isQuiz || !(isQuiz && currentPage === pageCount - 1)) && infoLabel}
+                    {(!isQuiz || !(isQuiz && currentPage === pageCount - 1)) &&
+                        infoLabel}
                 </Text>
                 {(!isQuiz || !(isQuiz && currentPage === pageCount - 1)) && (
                     <Button
