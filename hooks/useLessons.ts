@@ -1,4 +1,9 @@
 import useSWR from 'swr';
+import { tokenAddressToName } from '../helpers/tokenAddressToName';
+
+interface Rules {
+    tokens: any[];
+  }
 
 export default function useLessons(
     lessons: any,
@@ -21,6 +26,7 @@ export default function useLessons(
                 completionDate: string;
                 lessons: any[];
                 rewardAvailable: boolean;
+                rules: Rules;
                 totalPoints: number;
             };
         },
@@ -56,6 +62,12 @@ export default function useLessons(
         return formattedLessons?.filter((e: any) => e).pop();
     });
 
+    const tokens = data?.data?.rules?.tokens ?? null;
+
+    const rules = !!tokens && tokens?.map((token) => {
+        return {amount: token?.amount, token: tokenAddressToName(token?.address)}
+    })
+
     return {
         completedToday,
         data:
@@ -63,6 +75,7 @@ export default function useLessons(
                 ? mergedLessons?.filter((e: any) => e)
                 : lessons,
         rewardAvailable: data?.data?.rewardAvailable || true,
+        rules: rules[0] ?? null,
         totalPoints: data?.data?.totalPoints || 0
     };
 }
